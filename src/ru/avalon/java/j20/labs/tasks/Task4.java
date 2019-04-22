@@ -29,10 +29,7 @@ public class Task4 implements Task {
      */
     private Properties read(String path) throws IOException {
         Properties properties = new Properties();
-        try (InputStream stream = Thread
-                .currentThread()
-                .getContextClassLoader()
-                .getResourceAsStream(path)) {
+        try (InputStream stream = ClassLoader.getSystemResourceAsStream(path)) {
             properties.load(stream);
         }
         return properties;
