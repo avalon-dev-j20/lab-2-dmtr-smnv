@@ -11,11 +11,11 @@ public class Country {
     /**
      * Код страны.
      */
-    private final String CODE;
+    private final String code;
     /**
      * Название страны.
      */
-    private final String NAME;
+    private final String name;
 
     /**
      * Основной конструктор класса.
@@ -24,8 +24,8 @@ public class Country {
      * @param name название страны
      */
     public Country(String code, String name) {
-        this.CODE = code;
-        this.NAME = name;
+        this.code = code;
+        this.name = name;
     }
 
     /**
@@ -33,8 +33,8 @@ public class Country {
      *
      * @return строковый код страны
      */
-    public String getCODE() {
-        return CODE;
+    public String getCode() {
+        return code;
     }
 
     /**
@@ -42,22 +42,22 @@ public class Country {
      *
      * @return название страны
      */
-    public String getNAME() {
-        return NAME;
+    public String getName() {
+        return name;
     }
 
     @Override
     public boolean equals(Object otherObject) {
         if (otherObject instanceof Country) {
             Country otherCountry = (Country) otherObject;
-            return CODE.equals(otherCountry.CODE) && NAME.equals(otherCountry.NAME);
+            return code.equals(otherCountry.code) && name.equals(otherCountry.name);
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(CODE, NAME);
+        return Objects.hash(code, name);
     }
 
     /**
