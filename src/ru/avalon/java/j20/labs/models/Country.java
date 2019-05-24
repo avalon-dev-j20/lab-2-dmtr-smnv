@@ -1,11 +1,13 @@
 package ru.avalon.java.j20.labs.models;
 
 import java.text.ParseException;
+import java.util.Objects;
 
 /**
  * Модель представления о стране.
  */
 public class Country {
+
     /**
      * Код страны.
      */
@@ -16,7 +18,7 @@ public class Country {
     private final String name;
 
     /**
-     * Основное конструктор класса.
+     * Основной конструктор класса.
      *
      * @param code код страны
      * @param name название страны
@@ -44,23 +46,33 @@ public class Country {
         return name;
     }
 
-    /*
-     * TODO(Студент): для класса Country переопределить методы equals и hashCode
-     */
+    @Override
+    public boolean equals(Object otherObject) {
+        if (otherObject instanceof Country) {
+            Country otherCountry = (Country) otherObject;
+            return code.equals(otherCountry.code) && name.equals(otherCountry.name);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, name);
+    }
 
     /**
-     * Возвращает экземпляр страны созданный из переданного
-     * текста в формате 'Код:Название'.
+     * Возвращает экземпляр страны созданный из переданного текста в формате
+     * 'Код:Название'.
      *
-     * @param text тектс в формате 'Код:Название'
+     * @param text текст в формате 'Код:Название'
      * @return новый экземпляр типа {@Link Country}.
-     * @throws ParseException в случае, если переданная строка
-     * имеет неверный формат.
+     * @throws ParseException в случае, если переданная строка имеет неверный
+     * формат.
      */
     public static Country valueOf(String text) throws ParseException {
-        /*
-         * TODO(Студент): Реализовать метод valueOf класса Country
-         */
-        throw new UnsupportedOperationException("Not implemented yet!");
+        int index = text.indexOf(':');
+        String code = text.substring(0, index).trim();
+        String name = text.substring(index + 1).trim();
+        return new Country(code, name);
     }
 }
